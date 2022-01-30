@@ -6,6 +6,7 @@ import { notFound, errorHandler } from './middleware/errorMiddleware.js'
 import connectDB from './config/db.js'
 import bodyParser from 'body-parser'
 import patientRoutes from './routes/patientRoutes.js'
+import physicianRoutes from './routes/physicianRoutes.js'
 
 //reads .env file and assigns to process.env
 dotenv.config()
@@ -14,6 +15,9 @@ connectDB()
 
 //initializing express server
 const app = express()
+
+//allows to accept JSON data in the body
+app.use(express.json())
 
 //adding bodyparser middleware to parse incoming requests bodies
 app.use(bodyParser.json())
@@ -24,6 +28,8 @@ app.get('/', (req, res) => {
 
 //patients routes
 app.use('/api/patients', patientRoutes)
+//physician routes
+app.use('/api/physicians', physicianRoutes)
 
 app.use(notFound)
 

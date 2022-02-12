@@ -20,7 +20,7 @@ const getPatientById = asyncHandler(async (req, res) => {
   } else {
     //if patient not fount responds with 404 error
     res.status(404)
-    throw new Error('Patient not found')
+    throw new Error("Patient n'est pas dans la base de données.")
   }
 })
 

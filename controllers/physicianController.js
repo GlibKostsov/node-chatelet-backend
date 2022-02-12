@@ -72,7 +72,7 @@ const getPhysicianProfile = asyncHandler(async (req, res) => {
     })
   } else {
     res.status(404)
-    throw new Error("Médecin n'est dans la base de données.")
+    throw new Error("Médecin n'est pas dans la base de données.")
   }
 })
 

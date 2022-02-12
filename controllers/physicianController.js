@@ -20,7 +20,7 @@ const authPhysician = asyncHandler(async (req, res) => {
     })
   } else {
     res.status(401)
-    throw new Error('Invalid email or password')
+    throw new Error('Email ou Mot de passe invalide.')
   }
 })
 
@@ -34,7 +34,7 @@ const registerPhysician = asyncHandler(async (req, res) => {
 
   if (physicianExists) {
     res.status(400)
-    throw new Error('Physician already exists')
+    throw new Error('Le médecin existe déjà dans la base de données.')
   }
 
   const physician = await Physician.create({
@@ -53,7 +53,7 @@ const registerPhysician = asyncHandler(async (req, res) => {
     })
   } else {
     res.status(400)
-    throw new Error('Invalid user data')
+    throw new Error('Données de profil de médecin sont invalides.')
   }
 })
 
@@ -72,7 +72,7 @@ const getPhysicianProfile = asyncHandler(async (req, res) => {
     })
   } else {
     res.status(404)
-    throw new Error('Physician not found')
+    throw new Error("Médecin n'est dans la base de données.")
   }
 })
 

@@ -3,10 +3,9 @@ import Patient from '../models/patientModel.js'
 
 // @desc    Returns all patients
 // @route   GET /api/patients/
-// @access  Public
+// @access  Private/Admin
 const getPatients = asyncHandler(async (req, res) => {
   const patients = await Patient.find({})
-
   res.json(patients)
 })
 

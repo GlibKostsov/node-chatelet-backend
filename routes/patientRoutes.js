@@ -8,11 +8,13 @@ import {
   getPatientById,
 } from '../controllers/patientController.js'
 
-router.route('/').get(getPatients)
+import { protect, admin } from '../middleware/authMiddleware.js'
+
+router.route('/').get(protect, admin, getPatients)
 
 // @desc    Returns single patient by id
 // @route   GET /api/patients/:id
 // @access  Public
-router.get('/:id', getPatientById)
+router.get('/:id', protect, admin, getPatientById)
 
 export default router

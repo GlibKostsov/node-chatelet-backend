@@ -19,14 +19,23 @@ const protect = asyncHandler(async (req, res, next) => {
     } catch (error) {
       console.log(error)
       res.status(401)
-      throw new Error('Not authorized, token failed')
+      throw new Error('"Non autorisé, le token a échoué"')
     }
   }
 
   if (!token) {
     res.status(401)
-    throw new Error('Not authorized, no token')
+    throw new Error('Non autorisé, pas de token')
   }
 })
 
-export { protect }
+const admin = (req, res, next) => {
+  if (req.physician && req.physician.isAdmin) {
+    next()
+  } else {
+    res.status(401)
+    throw new Error("Non autorisé en tant qu'administrateur")
+  }
+}
+
+export { protect, admin }
